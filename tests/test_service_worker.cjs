@@ -68,13 +68,13 @@ async function respond(url, mode='same-origin') {
 }
 (async() => {
   await lifecycle('install');
-  const shell = cacheStore.get('campus-planner-shell-v1');
+  const shell = cacheStore.get('campus-planner-shell-v2');
   assert.equal(shell.size,9);
   console.log('PASS install pre-caches 9 app shell resources');
 
   await caches.open('campus-planner-shell-old');
   await lifecycle('activate');
-  assert.deepEqual(await caches.keys(),['campus-planner-shell-v1']);
+  assert.deepEqual(await caches.keys(),['campus-planner-shell-v2']);
   console.log('PASS activate removes outdated app caches');
 
   const onlineResponse = await respond(scope,'navigate');

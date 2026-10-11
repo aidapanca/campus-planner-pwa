@@ -1,5 +1,5 @@
 /* Campus Planner service worker. Change CACHE_VERSION when updating app-shell files. */
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
 const CACHE_NAME = `campus-planner-shell-${CACHE_VERSION}`;
 const CACHE_PREFIX = 'campus-planner-shell-';
 

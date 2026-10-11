@@ -27,9 +27,9 @@ The Service Worker unit tests simulate browser events and do not replace browser
 | T03 | Reload and confirm that a task remains saved | Passed | New task persisted after reload. |
 | T04 | Complete a task and reload | Passed | Completed state persisted; separate filter interaction still needs a specific check. |
 | T05 | Delete a task and reload | Passed | Deleted task did not return. |
-| T06 | Inspect manifest in DevTools | Not checked | Review the name, icon URLs, scope, and display settings. |
-| T07 | Inspect Service Worker in DevTools | Not checked | Verify that it is active and controls the page. |
-| T08 | Inspect Cache Storage in DevTools | Not checked | Confirm the cached HTML, CSS, JS, manifest, and icons. |
+| T06 | Inspect manifest in DevTools | Passed | Name, standalone display, start URL, theme colors, and icons were visible. The optional screenshot warnings are addressed by a subsequent manifest update. |
+| T07 | Inspect Service Worker in DevTools | Passed | Chrome showed `service-worker.js` as activated and running, with the localhost page listed as a client. |
+| T08 | Inspect Cache Storage in DevTools | Passed | DevTools listed nine cached app-shell entries (HTML, JS, CSS, manifest, and icons). |
 | T09 | Stop the local server and reload | Passed | Page reloaded without the local Python server. |
 | T10 | Add, complete, and delete tasks without the local server | Passed | Changes persisted after refresh. |
 | T11 | Network tab → Offline → reload | Not checked | Separate DevTools network simulation. |
@@ -37,11 +37,29 @@ The Service Worker unit tests simulate browser events and do not replace browser
 | T13 | Check mobile-sized layout in a browser | Not checked manually | Automated preview exists; verify on a real browser/device. |
 | T14 | Keyboard navigation and accessible names | Not checked | Use Tab, Shift+Tab, Enter, Space, and inspect form labels. |
 | T15 | Fresh browser profile installation and offline test | Not checked | Confirm behavior without existing browser data. |
-| T16 | Public HTTPS deployment | Not checked | Repeat install, cache, and offline tests at the deployed URL. |
+| T16 | Public HTTPS deployment | Passed | GitHub Pages site loaded, displayed the interface, and registered an active Service Worker over HTTPS. |
 
 The local-server shutdown test demonstrates offline availability of the application shell with the server unreachable. It does **not** by itself demonstrate an internet disconnection or cross-device synchronization.
 
-## 3. Running the test scripts
+## 3. Public deployment – manual browser checks
+
+**Environment:** Windows laptop, Google Chrome, `https://aidapanca.github.io/campus-planner-pwa/`.  
+**Date:** October 11, 2026.
+
+| ID | Test | Result | Notes |
+| --- | --- | --- | --- |
+| P01 | Open public HTTPS site | Passed | Campus Planner and its styles/assets loaded from GitHub Pages. |
+| P02 | Inspect the public Service Worker | Passed | DevTools showed `service-worker.js` activated and running under `/campus-planner-pwa/`, with the deployed page as client. |
+| P03 | Turn off Wi-Fi and reload public site | Passed | App loaded without internet access after an initial online visit. |
+| P04 | Edit tasks with Wi-Fi off and reload | Passed | Task modifications persisted after refresh. |
+| P05 | Install the public site on Windows | Passed | A separate Campus Planner app appeared in Windows alongside the earlier localhost installation, and was reported working. |
+| P06 | Confirm updated manifest screenshots in DevTools | Pending | Confirm both `wide` and `narrow` previews after the updated files are published. |
+| P07 | Mobile browser PWA install and offline use | Not checked | Test on an actual compatible mobile device if available. |
+| P08 | Keyboard and screen-reader accessibility | Not checked | Perform dedicated accessibility checks before claiming compliance. |
+
+The two screenshots registered in the updated manifest are **visual previews**, not evidence of offline functionality. The update has been validated with automated static checks but still needs a browser check after redeployment.
+
+## 4. Running the test scripts
 
 From the project root:
 
@@ -62,7 +80,7 @@ py tests/test_pwa.py
 
 The Playwright script runs an HTTP-based browser test, but installation through the browser UI still requires manual verification.
 
-## 4. Browser evidence checklist
+## 5. Browser evidence checklist
 
 Useful screenshots for technical documentation:
 

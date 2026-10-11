@@ -6,6 +6,9 @@ A lightweight study task planner built with HTML, CSS, and JavaScript. Campus Pl
 **Course:** Web Application Development (WADe)  
 **Year:** 2026
 
+**Live application:** https://aidapanca.github.io/campus-planner-pwa/  
+**Source repository:** https://github.com/aidapanca/campus-planner-pwa
+
 ## Features
 
 - Add tasks with a category, optional due date, and priority.
@@ -13,7 +16,7 @@ A lightweight study task planner built with HTML, CSS, and JavaScript. Campus Pl
 - Display task counts and completion progress.
 - Store task data in the current browser using `localStorage`.
 - Adapt the layout to desktop and mobile screens.
-- Install the app on supported devices using a Web App Manifest.
+- Install the app on supported devices using a Web App Manifest, with desktop and mobile install-preview screenshots.
 - Cache core application resources with a Service Worker for offline use.
 - Restore the four example tasks using the reset button.
 
@@ -65,9 +68,9 @@ node tests/test_service_worker.cjs
 
 Additional browser tests use Playwright; their setup is described in [docs/TEST_PLAN.md](docs/TEST_PLAN.md).
 
-The manual Windows checks performed on October 11, 2026 confirmed that the app can be installed, opens in its own window, and remains usable when the local HTTP server is stopped. Browser Developer Tools checks and tests of the public HTTPS deployment are documented separately as remaining verification steps. See [docs/TEST_PLAN.md](docs/TEST_PLAN.md) for the exact scope of the results.
+Manual Windows/Chrome tests on October 11, 2026 confirmed installation in a standalone window, Service Worker activation, cached application assets, locally stored tasks, and task persistence after refresh. The public GitHub Pages version was also loaded over HTTPS, installed, and reloaded successfully while disconnected from Wi-Fi. Browser-specific install-preview behavior and mobile-device installation are not yet verified. See [docs/TEST_PLAN.md](docs/TEST_PLAN.md) for the test-by-test results.
 
-The images in `docs/screenshots/` are previews of the application interface and are not presented as proof of installation or offline behavior.
+The images in `docs/screenshots/` are interface previews, including crops referenced by the manifest for richer installation prompts. They are not evidence of installation or offline functionality.
 
 ## Hosting with GitHub Pages
 

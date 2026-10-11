@@ -16,6 +16,7 @@ This is a study-oriented technical explanation designed for the WADe **Developin
 - `scope`: the area of the website intended to belong to the application.
 - `display: "standalone"`: asks supporting systems to show the app in a dedicated window.
 - `icons`: 192px, 512px and a maskable 512px icon.
+- `screenshots`: desktop (`wide`) and mobile (`narrow`) interface previews for supporting browsers' expanded install dialogs. These screenshots do not affect offline behavior.
 - `theme_color` / `background_color`: install/display hints for supporting browsers.
 
 The manifest **does not implement offline mode**. A Service Worker is **not always mandatory for installability**, but browser-specific conditions still apply. HTTPS (or localhost for development) is required to use the relevant secure-context features.

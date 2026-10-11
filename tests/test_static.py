@@ -28,6 +28,7 @@ parser=AssetLinks();parser.feed(page)
 all_urls=parser.assets+['./service-worker.js']
 manifest=json.loads((ROOT/'manifest.webmanifest').read_text(encoding='utf8'))
 all_urls.extend(icon['src'] for icon in manifest['icons'])
+all_urls.extend(shot['src'] for shot in manifest.get('screenshots', []))
 for link in all_urls:
     assert (ROOT/link).exists(), f'Missing local asset: {link}'
 print('PASS referenced HTML and manifest assets exist:',len(all_urls))
@@ -43,6 +44,20 @@ for icon in manifest['icons']:
     requested=tuple(int(x) for x in icon['sizes'].split('x'))
     assert dims==requested, (icon['src'],dims,requested)
 print('PASS PNG binary dimensions match manifest')
+
+screenshots=manifest.get('screenshots', [])
+assert {s['form_factor'] for s in screenshots} >= {'wide','narrow'}, 'Desktop and mobile previews are needed'
+for screenshot in screenshots:
+    assert screenshot['type']=='image/png'
+    data=(ROOT/screenshot['src']).read_bytes()
+    assert data[:8]==b'\x89PNG\r\n\x1a\n'
+    width,height=struct.unpack('>II',data[16:24])
+    size=tuple(int(x) for x in screenshot['sizes'].split('x'))
+    assert (width,height)==size, (screenshot['src'],size,(width,height))
+    assert 320 <= width <= 3840 and 320 <= height <= 3840
+    assert max(width,height)/min(width,height) <= 2.3
+    assert screenshot.get('label','').strip()
+print('PASS screenshots exist with supported dimensions, form factors and labels')
 
 class QuietHandler(SimpleHTTPRequestHandler):
     def log_message(self,*args): pass
