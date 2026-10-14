@@ -1,4 +1,3 @@
-/* Campus Planner: deliberately framework-free, easy to explain at WADe. */
 'use strict';
 
 const STORAGE_KEY = 'campus-planner-tasks-v1';
@@ -75,11 +74,11 @@ function loadTasks() {
 }
 
 let tasks = loadTasks();
-// Save the initial sample tasks once; an intentionally empty list is preserved.
+
 try {
   if (localStorage.getItem(STORAGE_KEY) === null) saveTasks();
 } catch (error) {
-  // The application can still run in memory if storage is unavailable.
+
 }
 
 function el(tag, className, text) {
@@ -229,7 +228,7 @@ installButton.addEventListener('click', async () => {
     const promptEvent = deferredInstallPrompt;
     deferredInstallPrompt = null;
     await promptEvent.prompt();
-    // A dismissive result is normal, not an error. Future prompts depend on browser.
+  
     await promptEvent.userChoice;
     return;
   }
