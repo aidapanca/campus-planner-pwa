@@ -1,9 +1,3 @@
-"""UI smoke tests/preview without network access.
-
-Uses real index.html, styles.css and app.js source injected into an about:blank page.
-This tests the DOM/UI and creates previews. It does NOT test actual Service Workers,
-manifest-based installation, HTTP hosting or true offline network behavior.
-"""
 from pathlib import Path
 import re
 from playwright.sync_api import sync_playwright, expect
