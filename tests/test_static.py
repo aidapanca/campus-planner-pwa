@@ -1,6 +1,3 @@
-"""Dependency-free static and HTTP serving checks for Campus Planner.
-Run: python tests/test_static.py
-"""
 from pathlib import Path
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from threading import Thread
