@@ -49,7 +49,7 @@ try:
         check('local starter count', lambda: expect(page.locator('#totalCount')).to_have_text('4'))
         page.wait_for_function('navigator.serviceWorker.controller !== null', timeout=15000)
         check('service worker controls page', lambda: assert_equal(page.evaluate('!!navigator.serviceWorker.controller'), True))
-        cache_info = page.evaluate('async () => ({keys: await caches.keys(), entries: await (await caches.open("campus-planner-shell-v1")).keys().then(keys=>keys.map(x=>x.url))})')
+        cache_info = page.evaluate('async () => ({keys: await caches.keys(), entries: await (await caches.open("campus-planner-shell-v3")).keys().then(keys=>keys.map(x=>x.url))})')
         check('offline shell cached', lambda: assert_equal(len(cache_info['entries']) >= 9, True))
         manifest_response = page.request.get(url + 'manifest.webmanifest')
         manifest = manifest_response.json()
