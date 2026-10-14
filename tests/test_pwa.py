@@ -1,8 +1,3 @@
-"""Repeatable Chromium checks for the Campus Planner PWA (requires playwright + Chromium).
-
-Run: python tests/test_pwa.py
-This script serves the project from a nested URL to mimic GitHub Pages.
-"""
 from pathlib import Path
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -73,7 +68,6 @@ try:
         check('deleting task removes it', lambda: expect(page.get_by_text('Try offline testing')).to_have_count(0))
         check('deleting returns total to four', lambda: expect(page.locator('#totalCount')).to_have_text('4'))
 
-        # The screenshot is of the real running app, before going offline.
         page.screenshot(path=str(SHOTS/'campus-planner-desktop.png'), full_page=True)
         ctx.set_offline(True)
         page.reload(wait_until='domcontentloaded')
