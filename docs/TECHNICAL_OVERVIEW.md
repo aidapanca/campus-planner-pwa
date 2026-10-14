@@ -79,16 +79,3 @@ This project is intentionally limited in scope. Background Sync, Push, Notificat
 Cache-first assets are served from the old shell until a new Service Worker version installs. Update `CACHE_VERSION` in `service-worker.js` whenever the files being precached change. The new worker deletes older caches during activation.
 
 `skipWaiting()` and `clients.claim()` simplify a classroom demo but can cause an update to start controlling an already open tab. A production application should carefully coordinate app-shell updates with its active sessions.
-
-## 8. What the live demonstration must prove
-
-1. App opens from an HTTPS/local URL.
-2. Manifest appears in browser developer tools.
-3. PWA install behavior is available in the chosen compatible browser (manual test).
-4. Service Worker shows as active/controlling the page.
-5. Cache Storage contains the offline app shell.
-6. App still loads after browser Network → Offline, then refresh.
-7. A task added offline remains present after another refresh.
-8. New tasks are not automatically available on another device/profile.
-
-See [DEMO_SCRIPT.md](DEMO_SCRIPT.md) and [TEST_PLAN.md](TEST_PLAN.md).
