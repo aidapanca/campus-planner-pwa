@@ -1,7 +1,3 @@
-/* Isolated Node tests for the Service Worker's event handlers.
- * These are logic tests, not an actual browser/offline installation test.
- * Run: node tests/test_service_worker.cjs
- */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -89,7 +85,7 @@ async function respond(url, mode='same-origin') {
 
   const css = await respond(scope+'styles.css');
   assert.match(await css.text(),/precached/);
-  assert.equal(fetchCount,2); // failed network navigation was counted
+  assert.equal(fetchCount,2); 
   console.log('PASS static asset resolves from cache while offline');
 
   const outside = await respond('https://example.test/other/styles.css');
