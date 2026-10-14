@@ -1,10 +1,7 @@
-/* Campus Planner service worker. Change CACHE_VERSION when updating app-shell files. */
 const CACHE_VERSION = 'v3';
 const CACHE_NAME = `campus-planner-shell-${CACHE_VERSION}`;
 const CACHE_PREFIX = 'campus-planner-shell-';
 
-// All URLs are relative to this service worker's location, so GitHub Pages
-// project subpaths (https://user.github.io/repository/) work without edits.
 const APP_SHELL = [
   './',
   './index.html',
@@ -20,7 +17,7 @@ const APP_SHELL = [
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
-    // Installation fails rather than silently delivering an incomplete offline shell.
+   
     await cache.addAll(APP_SHELL);
     await self.skipWaiting();
   })());
@@ -41,11 +38,11 @@ self.addEventListener('fetch', (event) => {
   if (request.method !== 'GET') return;
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
-  // Only cache requests inside this app's own scope.
+
   if (!url.href.startsWith(self.registration.scope)) return;
 
   if (request.mode === 'navigate') {
-    // NETWORK FIRST: fresh HTML online, cached app shell offline.
+    
     event.respondWith((async () => {
       try {
         const response = await fetch(request);
@@ -64,8 +61,6 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // CACHE FIRST: app-shell static assets; refresh by bumping CACHE_VERSION.
-  // Unrecognized requests remain network-only rather than filling the cache.
   const pathname = url.pathname;
   const isStatic = /\.(?:css|js|webmanifest|svg|png)$/i.test(pathname);
   if (!isStatic) return;
