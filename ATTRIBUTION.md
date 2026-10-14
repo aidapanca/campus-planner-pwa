@@ -21,13 +21,13 @@ The application, interface, task examples, icons, and project documentation were
 - MDN Web Docs contributors, [CycleTracker tutorial](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Tutorials/CycleTracker).
 - MDN Web Docs contributors, [js13kGames tutorial](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Tutorials/js13kGames).
 
-These references were used for technical background. The application is not a copy of the MDN sample applications.
+These references were used for technical background. 
 
 ## Assets and dependencies
 
 The application does not load third-party images, icon packs, fonts, frameworks, analytics scripts, or external JavaScript dependencies. Its interface icons and decorative graphics are included in the project files.
 
-The screenshots in `docs/screenshots/` are interface previews, not evidence of browser installation or offline functionality.
+The screenshots in `docs/screenshots/` are interface previews.
 
 ## Licenses
 
